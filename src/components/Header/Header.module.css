@@ -1,0 +1,21 @@
+.wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+.logo{
+  margin: 26px 0 26px 120px;
+}
+.links{
+  margin: 24px 120px 24px 0;
+  display: flex;
+  gap: 32px;
+  
+}
+.link{
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+.link.active{
+  color: #0B44CD;
+}
