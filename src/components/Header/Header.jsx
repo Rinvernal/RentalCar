@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className={s.wrapper}>
       <svg className={s.logo}>
-        <use href="/src/img/icons/symbol-defs.svg#icon-Logo" />
+        <use href="/icons/symbol-defs.svg#icon-Logo" />
       </svg>
       <div className={s.links}>
         <NavLink to="/" className={({ isActive }) => isActive ? `${s.link} ${s.active}` : s.link}>Home</NavLink>

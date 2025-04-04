@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
   cars: [],
   favorites: [],
+  brands: [],
   filters: {
     brand: '',
     price: '',
@@ -15,15 +16,28 @@ const initialState = {
 
 export const fetchCars = createAsyncThunk(
   'cars/fetchCars',
-  async (_, { rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
+    const { brand, price, mileage } = getState().cars.filters;
+
+    const params = new URLSearchParams();
+    if (brand) params.append('brand', brand);
+    if (price) params.append('rentalPrice', price);
+    if (mileage.from) params.append('minMileage', mileage.from);
+    if (mileage.to) params.append('maxMileage', mileage.to);
+
     try {
-      const response = await axios.get('https://car-rental-api.goit.global/cars');
+      const response = await axios.get(`https://car-rental-api.goit.global/cars?${params.toString()}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+
+export const fetchBrands = createAsyncThunk("cars/fetchBrands", async () => {
+  const response = await axios.get("https://car-rental-api.goit.global/brands");
+  return response.data;
+});
 
 const carsSlice = createSlice({
   name: 'cars',
@@ -39,6 +53,7 @@ const carsSlice = createSlice({
       state.filters = { ...state.filters, ...action.payload };
     }
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchCars.pending, (state) => {
@@ -52,6 +67,13 @@ const carsSlice = createSlice({
       .addCase(fetchCars.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(fetchBrands.fulfilled, (state, action) => {
+        console.log("Fetched brands:", action.payload); // Логування для перевірки
+        state.brands = action.payload; // Оновлюємо список брендів
+      })
+      .addCase(fetchBrands.rejected, (state, action) => {
+        console.error("Error fetching brands:", action.error);
       });
   }
 });
