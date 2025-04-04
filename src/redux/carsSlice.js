@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  cars: [], // Список авто
-  favorites: [], // Обрані авто
+  cars: [],
+  favorites: [],
   filters: {
     brand: '',
     price: '',
@@ -17,15 +17,14 @@ export const fetchCars = createAsyncThunk(
   'cars/fetchCars',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('https://car-rental-api.goit.global/cars'); // Запит на API
-      return response.data; // Повертаємо отримані авто
+      const response = await axios.get('https://car-rental-api.goit.global/cars');
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
 
-// Створюємо carsSlice
 const carsSlice = createSlice({
   name: 'cars',
   initialState,
@@ -57,8 +56,6 @@ const carsSlice = createSlice({
   }
 });
 
-// Експортуємо екшени
 export const { addToFavorites, removeFromFavorites, setFilters } = carsSlice.actions;
 
-// Експортуємо редюсер
 export default carsSlice.reducer;

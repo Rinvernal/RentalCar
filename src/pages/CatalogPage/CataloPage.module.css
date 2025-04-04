@@ -1,0 +1,8 @@
+.wrapper{
+  padding: 84px 120px 0;
+}
+.wrapperCard{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}

@@ -1,0 +1,73 @@
+.wrapper{
+  width: 276px;
+  height: 424px;
+  position: relative;
+}
+.img{
+  border-radius: 14px;
+  width: 276px;
+  height: 268px;
+  object-fit: cover;
+}
+.mainInfo{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-top: 16px;
+  
+}
+.info{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 3px;
+  
+}
+.textInfo{
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+}
+.description{
+  margin-top: 8px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8D929A;
+}
+.text{
+  margin: 0;
+}
+.button{
+  margin-top: 28px;
+  border-radius: 12px;
+  width: 276px;
+  height: 44px;
+  background-color: #3470FF;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.heartIcon {
+  width: 24px;
+  height: 24px;
+  fill: #f2f4f7;
+  transition: fill 0.3s ease;
+}
+
+.favoriteButton {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  top: 16px;
+  right: 16px;
+}
+
+.favoriteButton.active .heartIcon {
+  fill: blue;
+}
