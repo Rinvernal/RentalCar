@@ -1,5 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchBrands, fetchCars } from "./carsThunks";
+
 
 const initialState = {
   cars: [],
@@ -13,31 +14,6 @@ const initialState = {
   isLoading: false,
   error: null
 };
-
-export const fetchCars = createAsyncThunk(
-  'cars/fetchCars',
-  async (_, { getState, rejectWithValue }) => {
-    const { brand, price, mileage } = getState().cars.filters;
-
-    const params = new URLSearchParams();
-    if (brand) params.append('brand', brand);
-    if (price) params.append('rentalPrice', price);
-    if (mileage.from) params.append('minMileage', mileage.from);
-    if (mileage.to) params.append('maxMileage', mileage.to);
-
-    try {
-      const response = await axios.get(`https://car-rental-api.goit.global/cars?${params.toString()}`);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const fetchBrands = createAsyncThunk("cars/fetchBrands", async () => {
-  const response = await axios.get("https://car-rental-api.goit.global/brands");
-  return response.data;
-});
 
 const carsSlice = createSlice({
   name: 'cars',
@@ -53,7 +29,6 @@ const carsSlice = createSlice({
       state.filters = { ...state.filters, ...action.payload };
     }
   },
-
   extraReducers: (builder) => {
     builder
       .addCase(fetchCars.pending, (state) => {
@@ -69,8 +44,7 @@ const carsSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(fetchBrands.fulfilled, (state, action) => {
-        console.log("Fetched brands:", action.payload); // Логування для перевірки
-        state.brands = action.payload; // Оновлюємо список брендів
+        state.brands = action.payload;
       })
       .addCase(fetchBrands.rejected, (state, action) => {
         console.error("Error fetching brands:", action.error);
@@ -79,5 +53,4 @@ const carsSlice = createSlice({
 });
 
 export const { addToFavorites, removeFromFavorites, setFilters } = carsSlice.actions;
-
 export default carsSlice.reducer;

@@ -1,5 +1,5 @@
   import { useDispatch, useSelector } from "react-redux";
-  import { addToFavorites, removeFromFavorites } from "../../redux/carsSlice";
+  import { addToFavorites, removeFromFavorites } from "../../redux/cars/carsSlice";
   import React from 'react'
   import s from './ImageCard.module.css'
 import { useNavigate } from "react-router-dom";

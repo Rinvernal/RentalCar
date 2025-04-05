@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBrands, fetchCars, setFilters } from "../../redux/carsSlice";
+import { fetchBrands, fetchCars } from "../../redux/cars/carsThunks";
+import { setFilters } from "../../redux/cars/carsSlice";
 
 
 const FilterBar = () => {
