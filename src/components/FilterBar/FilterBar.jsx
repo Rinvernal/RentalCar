@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBrands, fetchCars } from "../../redux/cars/carsThunks";
 import { setFilters } from "../../redux/cars/carsSlice";
-
+import s from "./FilterBar.module.css"
 
 const FilterBar = () => {
   const dispatch = useDispatch();
@@ -18,10 +18,11 @@ const FilterBar = () => {
   };
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <select
         value={filters.brand}
         onChange={(e) => handleFilterChange("brand", e.target.value)}
+        className={s.box}
       >
         <option value="">Choose a brand</option>
         {brands.map((brand) => (
@@ -34,6 +35,7 @@ const FilterBar = () => {
       <select
         value={filters.price}
         onChange={(e) => handleFilterChange("price", e.target.value)}
+        className={s.box}
       >
         <option value="">Choose a price</option>
         {[30, 40, 50, 60, 70, 80].map((price) => (
@@ -50,6 +52,7 @@ const FilterBar = () => {
         onChange={(e) =>
           handleFilterChange("mileage", { ...filters.mileage, from: e.target.value })
         }
+        className={s.box}
       />
       <input
         type="number"
@@ -58,6 +61,7 @@ const FilterBar = () => {
         onChange={(e) =>
           handleFilterChange("mileage", { ...filters.mileage, to: e.target.value })
         }
+        className={s.box}
       />
     </div>
   );

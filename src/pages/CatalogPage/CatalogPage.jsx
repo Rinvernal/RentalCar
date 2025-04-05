@@ -4,6 +4,7 @@ import { fetchCars } from "../../redux/cars/carsThunks";
 import s from './CataloPage.module.css'
 import ImageCard from "../../components/ImageCard/ImageCard";
 import FilterBar from "../../components/FilterBar/FilterBar";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
 const CatalogPage = () => {
   const dispatch = useDispatch();
   const { cars = [], isLoading, error } = useSelector(state => state.cars);
@@ -14,7 +15,6 @@ const CatalogPage = () => {
 
   return (
     <div className={s.wrapper}>
-      
       {isLoading && <p>Loading cars...</p>}
       {error && <p>Error: {error}</p>}
 
@@ -25,6 +25,7 @@ const CatalogPage = () => {
           <ImageCard key={car.id} car={car} />
         ))}
       </div>
+      <LoadMoreBtn/>
     </div>
   );
 };

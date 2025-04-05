@@ -19,10 +19,7 @@ import { useNavigate } from "react-router-dom";
     };
 
     const navigate = useNavigate()
-    const handleClick = () => {
-      navigate('/catalog/:id')
-    }
-
+  
     const addressParts = car.address.split(", ");
     const city = addressParts[addressParts.length - 2] || "";
     const country = addressParts[addressParts.length - 1] || "";
@@ -46,7 +43,7 @@ import { useNavigate } from "react-router-dom";
             {car.type} <span className={s.separator}>|</span> {car.mileage.toLocaleString()} km
           </p>
         </div>
-        <button className={s.button} onClick={handleClick}>Read More</button>
+        <button className={s.button} onClick={() => navigate(`/catalog/${car.id}`)}>Read More</button>
         <button
         className={`${s.favoriteButton} ${isFavorite ? s.active : ""}`}
         onClick={handleFavoriteClick}
