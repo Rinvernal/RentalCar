@@ -1,4 +1,4 @@
-.wrapper{
+/* .wrapper{
   display: flex;
   flex-direction: row;
   gap: 16px;
@@ -14,4 +14,150 @@
   line-height: 125%;
   font-family: "Manrope", sans-serif;
   border: none;
+}
+
+.wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #fff;
+  flex-wrap: wrap;
+} */
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 24px;
+  background-color: #fff;
+  font-family: "Manrope", sans-serif;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 180px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8D929A;
+  margin-left: 4px;
+}
+
+.box {
+  appearance: none;
+  background-color: #F7F7F7;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.box:focus,
+.box:hover {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
+}
+
+.mileageInputs {
+  display: flex;
+  gap: 8px;
+}
+
+.searchButton {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 48px;
+}
+
+.searchButton:hover {
+  background-color: #2563eb;
+}
+
+/* Dropdown styles */
+.dropdownWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dropdownToggle {
+  background-color: #F7F7F7;
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  margin-left: 10px;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.dropdownItem {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdownItem:hover {
+  background-color: #f3f4f6;
+}
+
+/* Custom select with arrow */
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.selectWrapper select {
+  padding-right: 40px;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
 }

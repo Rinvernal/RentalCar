@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import * as Yup from 'yup';
 import s from "./FeedBackForm.module.css"
+import toast from "react-hot-toast";
 
 function FeedbackForm() {
   const initialValues = {
@@ -17,9 +18,10 @@ function FeedbackForm() {
     comment: Yup.string(),
   });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, { resetForm }) => {
     console.log('Form values:', values);
-    alert('Form submitted!');
+    toast.success('Form submitted successfully!');
+    resetForm();
   };
 
   return (

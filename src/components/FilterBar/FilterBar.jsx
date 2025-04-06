@@ -1,16 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBrands, fetchCars } from "../../redux/cars/carsThunks";
 import { setFilters } from "../../redux/cars/carsSlice";
-import s from "./FilterBar.module.css"
+import s from "./FilterBar.module.css";
 
 const FilterBar = () => {
   const dispatch = useDispatch();
   const { brands, filters } = useSelector((state) => state.cars);
+  const dropdownRef = useRef();
+  const [showDropdown, setShowDropdown] = useState(null); // 'brand' | 'price' | null
+const brandDropdownRef = useRef();
+const priceDropdownRef = useRef();
 
   useEffect(() => {
     dispatch(fetchBrands());
   }, [dispatch]);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleFilterChange = (key, value) => {
     dispatch(setFilters({ [key]: value }));
@@ -19,50 +35,107 @@ const FilterBar = () => {
 
   return (
     <div className={s.wrapper}>
-      <select
-        value={filters.brand}
-        onChange={(e) => handleFilterChange("brand", e.target.value)}
-        className={s.box}
-      >
-        <option value="">Choose a brand</option>
+      {/* Car Brand */}
+      <div className={s.filterGroup}>
+  <label className={s.label}>Car brand</label>
+  <div className={s.dropdownWrapper} ref={brandDropdownRef}>
+    <div
+      className={s.dropdownToggle}
+      onClick={() => setShowDropdown((prev) => prev === "brand" ? null : "brand")}
+    >
+      {filters.brand || "Choose a brand"}
+      <span className={`${s.arrow} ${showDropdown === "brand" ? s.arrowOpen : ""}`}>
+        <svg width='16px' height='16px'>
+          <use href="/icons/symbol-defs.svg#icon-arrow-app"/>
+        </svg>
+      </span>
+    </div>
+    {showDropdown === "brand" && (
+      <div className={s.dropdownMenu}>
         {brands.map((brand) => (
-          <option key={brand} value={brand}>
+          <div
+            key={brand}
+            className={s.dropdownItem}
+            onClick={() => {
+              handleFilterChange("brand", brand);
+              setShowDropdown(null);
+            }}
+          >
             {brand}
-          </option>
+          </div>
         ))}
-      </select>
+      </div>
+    )}
+  </div>
+</div>
 
-      <select
-        value={filters.price}
-        onChange={(e) => handleFilterChange("price", e.target.value)}
-        className={s.box}
-      >
-        <option value="">Choose a price</option>
+      {/* Price */}
+      <div className={s.filterGroup}>
+  <label className={s.label}>Price / 1 hour</label>
+  <div className={s.dropdownWrapper} ref={priceDropdownRef}>
+    <div
+      className={s.dropdownToggle}
+      onClick={() => setShowDropdown((prev) => prev === "price" ? null : "price")}
+    >
+      {filters.price || "Choose a price"}
+      <span className={`${s.arrow} ${showDropdown === "price" ? s.arrowOpen : ""}`}>
+        <svg width='16px' height='16px'>
+          <use href="/icons/symbol-defs.svg#icon-arrow-app"/>
+        </svg>
+      </span>
+    </div>
+    {showDropdown === "price" && (
+      <div className={s.dropdownMenu}>
         {[30, 40, 50, 60, 70, 80].map((price) => (
-          <option key={price} value={price}>
+          <div
+            key={price}
+            className={s.dropdownItem}
+            onClick={() => {
+              handleFilterChange("price", price);
+              setShowDropdown(null);
+            }}
+          >
             {price}
-          </option>
+          </div>
         ))}
-      </select>
+      </div>
+    )}
+  </div>
+</div>
 
-      <input
-        type="number"
-        placeholder="From"
-        value={filters.mileage?.from || ""}
-        onChange={(e) =>
-          handleFilterChange("mileage", { ...filters.mileage, from: e.target.value })
-        }
-        className={s.box}
-      />
-      <input
-        type="number"
-        placeholder="To"
-        value={filters.mileage?.to || ""}
-        onChange={(e) =>
-          handleFilterChange("mileage", { ...filters.mileage, to: e.target.value })
-        }
-        className={s.box}
-      />
+      {/* Mileage */}
+      <div className={s.filterGroup}>
+        <label className={s.label}>Car mileage / km</label>
+        <div className={s.mileageInputs}>
+          <input
+            type="number"
+            placeholder="From"
+            value={filters.mileage?.from || ""}
+            onChange={(e) =>
+              handleFilterChange("mileage", {
+                ...filters.mileage,
+                from: e.target.value,
+              })
+            }
+            className={s.box}
+          />
+          <input
+            type="number"
+            placeholder="To"
+            value={filters.mileage?.to || ""}
+            onChange={(e) =>
+              handleFilterChange("mileage", {
+                ...filters.mileage,
+                to: e.target.value,
+              })
+            }
+            className={s.box}
+          />
+        </div>
+      </div>
+
+      {/* Search button */}
+      <button className={s.searchButton}>Search</button>
     </div>
   );
 };
