@@ -19,8 +19,19 @@ const CatalogPage = () => {
 
   useEffect(() => {
     dispatch(setPage(1));
-    dispatch(fetchCars());
-  }, [dispatch, filters]);
+  
+    const isFiltersEmpty = Object.values(filters).every(value => {
+      if (typeof value === 'object') {
+        return Object.values(value).every(v => !v);
+      }
+      return !value;
+    });
+  
+    if (isFiltersEmpty) {
+      dispatch(fetchCars());
+    }
+  }, [dispatch]);
+  
 
   useEffect(() => {
     if (page > 1) {
