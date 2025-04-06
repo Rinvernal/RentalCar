@@ -4,7 +4,7 @@ import { fetchBrands, fetchCarDetails, fetchCars } from "./carsThunks";
 
 const initialState = {
   cars: [],
-  favorites: [],
+  favorites: JSON.parse(localStorage.getItem('favorites')) || [],
   currentCar: null,
   brands: [],
   filters: {
@@ -24,9 +24,11 @@ const carsSlice = createSlice({
   reducers: {
     addToFavorites: (state, action) => {
       state.favorites.push(action.payload);
+      localStorage.setItem('favorites', JSON.stringify(state.favorites));
     },
     removeFromFavorites: (state, action) => {
       state.favorites = state.favorites.filter(car => car.id !== action.payload);
+      localStorage.setItem('favorites', JSON.stringify(state.favorites));
     },
     setFilters: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
@@ -40,6 +42,8 @@ const carsSlice = createSlice({
       .addCase(fetchCars.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.cars = [];
+        state.page = 1;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.isLoading = false;

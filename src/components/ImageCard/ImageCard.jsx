@@ -45,11 +45,11 @@ import { useNavigate } from "react-router-dom";
         </div>
         <button className={s.button} onClick={() => navigate(`/catalog/${car.id}`)}>Read More</button>
         <button
-        className={`${s.favoriteButton} ${isFavorite ? s.active : ""}`}
-        onClick={handleFavoriteClick}
-      >
-        <svg className={s.heartIcon}>
-          <use className={s.heart} href="/icons/symbol-defs.svg#icon-heart1" />
+          className={`${s.favoriteButton} ${isFavorite ? s.active : ""}`}
+          onClick={handleFavoriteClick}
+        >
+        <svg className={s.heartIcon} viewBox="0 0 32 32">
+        <path fill="currentColor" d="M16 2.628c8.876-9.124 31.068 6.842 0 27.372-31.068-20.528-8.876-36.496 0-27.372z"></path>
         </svg>
       </button>
       </div>
