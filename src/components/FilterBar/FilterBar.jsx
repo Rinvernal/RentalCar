@@ -129,7 +129,7 @@ const priceDropdownRef = useRef();
                 to: e.target.value,
               })
             }
-            className={s.box}
+            className={`${s.box} ${s.to}`}
           />
         </div>
       </div>
