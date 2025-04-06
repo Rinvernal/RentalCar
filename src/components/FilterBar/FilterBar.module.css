@@ -1,31 +1,3 @@
-/* .wrapper{
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  margin-bottom: 56px;
-}
-.box{
-  border-radius: 12px;
-  padding: 12px 16px;
-  width: 204px;
-  background-color: #F7F7F7;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  font-family: "Manrope", sans-serif;
-  border: none;
-}
-
-.wrapper {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #fff;
-  flex-wrap: wrap;
-} */
-
 .wrapper {
   display: flex;
   gap: 20px;
@@ -92,12 +64,10 @@
   background-color: #2563eb;
 }
 
-/* Dropdown styles */
 .dropdownWrapper {
   position: relative;
   width: 100%;
 }
-
 .dropdownToggle {
   background-color: #F7F7F7;
   border-radius: 12px;
@@ -130,6 +100,7 @@
   max-height: 200px;
   overflow-y: auto;
   z-index: 10;
+  color: #8D929A;
 }
 
 .dropdownItem {
@@ -142,7 +113,6 @@
   background-color: #f3f4f6;
 }
 
-/* Custom select with arrow */
 .selectWrapper {
   position: relative;
   width: 100%;
@@ -170,7 +140,29 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; /* Для Firefox */
+  -moz-appearance: textfield;
 }
 
+.dropdownMenu::-webkit-scrollbar {
+  width: 8px;
+}
 
+.dropdownMenu::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+.dropdownMenu::-webkit-scrollbar-thumb {
+  background-color: #d1d5db; /* світло-сірий */
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdownMenu::-webkit-scrollbar-thumb:hover {
+  background-color: #a1a1aa; /* трохи темніший при наведенні */
+}
+
+.dropdownMenu {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
