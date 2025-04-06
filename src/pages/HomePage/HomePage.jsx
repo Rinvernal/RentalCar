@@ -14,7 +14,6 @@ const HomePage = () => {
         <p className={s.text2}>Reliable and budget-friendly rentals for any journey</p>
         <button className={s.button} onClick={handleClick}>View Catalog</button>
       </div>
-      
     </div>
   )
 }

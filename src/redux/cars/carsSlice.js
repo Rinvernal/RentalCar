@@ -43,10 +43,16 @@ const carsSlice = createSlice({
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.isLoading = false;
+        const newCars = action.payload.cars.cars;
+
         if (state.page === 1) {
-          state.cars = action.payload.cars;
+          state.cars = newCars;
         } else {
-          state.cars = [...state.cars, ...action.payload.cars];
+          state.cars = [...state.cars, ...newCars];
+        }
+
+        if (newCars.length < 12) {
+          state.totalPages = state.page;
         }
       })
       .addCase(fetchCars.rejected, (state, action) => {
@@ -74,5 +80,5 @@ const carsSlice = createSlice({
   }
 });
 
-export const { addToFavorites, removeFromFavorites, setFilters } = carsSlice.actions;
+export const { addToFavorites, removeFromFavorites, setFilters, setPage } = carsSlice.actions;
 export default carsSlice.reducer;

@@ -49,7 +49,7 @@ import { useNavigate } from "react-router-dom";
         onClick={handleFavoriteClick}
       >
         <svg className={s.heartIcon}>
-          <use href="/icons/symbol-defs.svg#icon-heart" />
+          <use className={s.heart} href="/icons/symbol-defs.svg#icon-heart1" />
         </svg>
       </button>
       </div>

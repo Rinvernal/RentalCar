@@ -13,10 +13,12 @@ export const fetchCars = createAsyncThunk(
     if (mileage.from) params.append('minMileage', mileage.from);
     if (mileage.to) params.append('maxMileage', mileage.to);
     params.append('page', page);
+    params.append('limit', 12);
 
     try {
       const response = await axios.get(`https://car-rental-api.goit.global/cars?${params.toString()}`);
-      return response.data;
+      return { cars: response.data };
+      // return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

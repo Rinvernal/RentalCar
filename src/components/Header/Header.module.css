@@ -1,6 +1,7 @@
 .wrapper{
   display: flex;
   justify-content: space-between;
+  background-color: #F2F4F7;
 }
 .logo{
   margin: 26px 0 26px 120px;

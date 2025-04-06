@@ -55,8 +55,9 @@
 .heartIcon {
   width: 24px;
   height: 24px;
-  fill: #f2f4f7;
+  fill: blue;
   transition: fill 0.3s ease;
+  
 }
 
 .favoriteButton {
@@ -70,4 +71,8 @@
 
 .favoriteButton.active .heartIcon {
   fill: blue;
+}
+
+.favoriteButton .heartIcon {
+  fill: white;
 }
