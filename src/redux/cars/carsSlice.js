@@ -42,8 +42,6 @@ const carsSlice = createSlice({
       .addCase(fetchCars.pending, (state) => {
         state.isLoading = true;
         state.error = null;
-        state.cars = [];
-        state.page = 1;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.isLoading = false;

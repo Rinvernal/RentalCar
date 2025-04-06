@@ -15,6 +15,7 @@ const CatalogPage = () => {
   const error = useSelector(selectError);
   const page = useSelector(selectPage);
   const filters = useSelector(selectFilters);
+  const totalPages = useSelector(state => state.cars.totalPages);
 
   useEffect(() => {
     dispatch(setPage(1));
@@ -43,7 +44,7 @@ const CatalogPage = () => {
           <ImageCard key={car.id} car={car} />
         ))}
       </div>
-      {!isLoading && cars.length > 0 && (
+      {!isLoading && cars.length > 0 && page < totalPages && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
     </div>
