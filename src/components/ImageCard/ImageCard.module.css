@@ -49,6 +49,7 @@
   border: none;
   font-size: 16px;
   cursor: pointer;
+  color: #fff;
 }
 
 .favoriteButton {
@@ -65,8 +66,8 @@
 }
 
 .heartIcon {
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   fill: white;
   transition: color 0.3s ease;
   stroke: white;
