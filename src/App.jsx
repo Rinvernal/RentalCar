@@ -4,8 +4,8 @@ import HomePage from './pages/HomePage/HomePage'
 import CatalogPage from './pages/CatalogPage/CatalogPage'
 import Header from './components/Header/Header'
 import CarDetailsPage from './pages/CarDetailsPage/CarDetailsPage'
+import NotFound from './components/NotFound/NotFound'
 import { Toaster } from 'react-hot-toast'
-import NotFoundPage from './components/NotFoundPage/NotFoundPage'
 function App() {
 
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<HomePage/>}/>
         <Route path="/catalog" element={<CatalogPage/>}/>
         <Route path="/catalog/:id" element={<CarDetailsPage/>}/>
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster position="top-right" />
     </div>
